@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Baptisan - Kenzo</title>
+    <meta property="og:title" content="Undangan Syukuran Baptisan - Kenzo">
+    <meta property="og:description" content="Kenzo Maynart Tuhumury - Minggu, 3 Mei 2026.">
+    <meta property="og:image" content="1.jpeg">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Satisfy&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brown-deep:   #3b1f10;
+            --brown:        #6b3a2a;
+            --brown-mid:    #8b5a3c;
+            --brown-light:  #b58a6a;
+            --brown-pale:   #d4b49a;
+            --cream:        #faf6ef;
+            --cream-dark:   #f0e8d8;
+            --cream-border: #e2d5c0;
+            --white:        #ffffff;
+            --text-dark:    #2a150a;
+            --text-mid:     #5c3d2e;
+            --text-light:   #9a7a6a;
+
+            --font-script:  'Satisfy', cursive;
+            --font-heading: 'Playfair Display', serif;
+            --font-serif:   'Cormorant Garamond', serif;
+            --font-body:    'DM Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--brown-deep);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: var(--cream-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--brown-light); border-radius: 2px; }
+
+        /* ── CONTAINER ── */
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--cream);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(0,0,0,0.6);
+        }
+
+        /* ── FADE UP ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* ════════════════════════════════
+           COVER
+        ════════════════════════════════ */
+        #cover {
+            position: fixed;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; max-width: 480px;
+            height: 100vh;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 48px 36px;
+            background: var(--brown-deep);
+            transition: transform 1.2s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.6s ease;
+        }
+
+        /* Subtle texture lines on cover */
+        #cover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.018) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.018) 40px);
+            pointer-events: none;
+        }
+
+        /* Corner ornaments */
+        .cover-corner {
+            position: absolute;
+            width: 48px; height: 48px;
+            border-color: var(--brown-light);
+            border-style: solid;
+            opacity: 0.5;
+        }
+        .cc-tl { top: 24px; left: 24px; border-width: 1px 0 0 1px; }
+        .cc-tr { top: 24px; right: 24px; border-width: 1px 1px 0 0; }
+        .cc-bl { bottom: 24px; left: 24px; border-width: 0 0 1px 1px; }
+        .cc-br { bottom: 24px; right: 24px; border-width: 0 1px 1px 0; }
+
+        .cover-cross {
+            font-size: 1.4rem;
+            color: var(--brown-pale);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover-label {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--brown-pale);
+            opacity: 0.7;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 28px;
+        }
+
+        .cover-img-wrap {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 32px;
+        }
+
+        .cover-img-ring {
+            width: 240px;
+            height: 240px;
+            border: 2px solid var(--brown-light);
+            border-radius: 50%;
+            padding: 6px;
+            display: inline-block;
+            opacity: 0.9;
+        }
+
+        .cover-img-ring img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            object-position: bottom;
+        }
+
+        .cover-thin-line {
+            width: 1px;
+            height: 40px;
+            background: var(--brown-light);
+            opacity: 0.35;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover-name {
+            font-family: var(--font-script);
+            font-size: 5rem;
+            color: var(--white);
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+            animation: fadeIn 1.4s ease-out both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cover-fullname {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--brown-pale);
+            letter-spacing: 2px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 6px;
+        }
+
+        .cover-date {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: rgba(212,180,154,0.6);
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 40px;
+        }
+
+        .cover-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 36px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover-dots span { width: 40px; height: 1px; background: var(--brown-light); opacity: 0.3; }
+        .cover-dots i { width: 4px; height: 4px; border: 1px solid var(--brown-pale); transform: rotate(45deg); opacity: 0.6; }
+
+        .btn-open {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid var(--brown-light);
+            padding: 14px 40px;
+            border-radius: 2px;
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-open:hover {
+            background: var(--brown);
+            border-color: var(--brown);
+            color: var(--white);
+        }
+
+        /* ════════════════════════════════
+           MAIN
+        ════════════════════════════════ */
+        #main-content { display: none; position: relative; }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--brown-deep);
+            padding: 64px 32px 56px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Subtle grid lines */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px);
+            pointer-events: none;
+        }
+
+        .hero-corner {
+            position: absolute;
+            width: 36px; height: 36px;
+            border-color: var(--brown-light);
+            border-style: solid;
+            opacity: 0.3;
+        }
+        .hc-tl { top: 20px; left: 20px; border-width: 1px 0 0 1px; }
+        .hc-tr { top: 20px; right: 20px; border-width: 1px 1px 0 0; }
+        .hc-bl { bottom: 20px; left: 20px; border-width: 0 0 1px 1px; }
+        .hc-br { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
+
+        .hero-label {
+            font-family: var(--font-body);
+            font-size: 0.58rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--brown-pale);
+            opacity: 0.7;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 12px;
+        }
+
+        .hero-cross {
+            font-size: 1.2rem;
+            color: var(--brown-pale);
+            opacity: 0.5;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 12px;
+        }
+
+        .hero-name {
+            font-family: var(--font-script);
+            font-size: 4.5rem;
+            color: var(--white);
+            line-height: 1.1;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 4px;
+        }
+
+        .hero-fullname
+        {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            color: var(--brown-pale);
+            letter-spacing: 2px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 32px;
+            margin-top: 20px;
+        }
+
+        .hero-photo {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+            margin-bottom: 32px;
+        }
+
+        .hero-photo img {
+            width: 188px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 3px;
+            display: block;
+            border: 1px solid rgba(212,180,154,0.25);
+        }
+
+        .hero-photo-corner {
+            position: absolute;
+            width: 18px; height: 18px;
+            border-color: var(--brown-pale);
+            border-style: solid;
+            opacity: 0.5;
+        }
+        .hpc-tl { top: -6px; left: -6px; border-width: 1px 0 0 1px; }
+        .hpc-tr { top: -6px; right: -6px; border-width: 1px 1px 0 0; }
+        .hpc-bl { bottom: -6px; left: -6px; border-width: 0 0 1px 1px; }
+        .hpc-br { bottom: -6px; right: -6px; border-width: 0 1px 1px 0; }
+
+        .hero-quote {
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            color: rgba(212,180,154,0.75);
+            font-style: italic;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* ── SECTION DIVIDER ── */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 0 28px;
+            margin: 0;
+        }
+
+        .divider-line { flex: 1; height: 1px; background: var(--cream-border); }
+        .divider-diamond {
+            width: 6px; height: 6px;
+            border: 1px solid var(--brown-pale);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+
+        /* ── CONTENT SPACING ── */
+        .section-pad {
+            padding: 40px 28px;
+        }
+
+        /* ── GREETING ── */
+        .greeting {
+            background: var(--brown-deep);
+            padding: 48px 32px;
+            text-align: center;
+            position: relative;
+        }
+
+        .greeting::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px);
+            pointer-events: none;
+        }
+
+        .greeting-inner {
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(212,180,154,0.15);
+            padding: 36px 28px;
+            border-radius: 2px;
+        }
+
+        .greeting-cross {
+            font-size: 1.1rem;
+            color: var(--brown-pale);
+            opacity: 0.6;
+            margin-bottom: 16px;
+        }
+
+        .greeting-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .greeting-text {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            color: rgba(212,180,154,0.8);
+            line-height: 1.9;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .greeting-name {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--brown-pale);
+            letter-spacing: 1.5px;
+            font-weight: 400;
+        }
+
+        /* ── PHOTO CARD ── */
+        .photo-card {
+            background: var(--white);
+            margin: 0;
+            padding: 28px;
+            border-bottom: 1px solid var(--cream-border);
+        }
+
+        .photo-card img {
+            width: 50%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 2px;
+            display: block;
+            margin-bottom: 20px;
+            object-position: bottom;
+        }
+
+        .photo-card-label {
+            font-family: var(--font-body);
+            font-size: 0.58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .photo-card-name {
+            font-family: var(--font-script);
+            font-size: 2rem;
+            color: var(--brown);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--brown);
+            border: 1px solid var(--brown-light);
+            padding: 10px 28px;
+            border-radius: 2px;
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-outline:hover {
+            background: var(--brown);
+            color: var(--white);
+            border-color: var(--brown);
+        }
+
+        .btn-solid {
+            display: inline-block;
+            background: var(--brown);
+            color: var(--white);
+            border: 1px solid var(--brown);
+            padding: 14px 28px;
+            border-radius: 2px;
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-solid:hover { background: var(--brown-deep); border-color: var(--brown-deep); }
+
+        /* ── EVENT ── */
+        .event-section {
+            background: var(--cream-dark);
+            padding: 48px 28px;
+            text-align: center;
+            border-top: 1px solid var(--cream-border);
+            border-bottom: 1px solid var(--cream-border);
+        }
+
+        .section-tag {
+            font-family: var(--font-body);
+            font-size: 0.58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: 1.7rem;
+            color: var(--brown-deep);
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .section-sub {
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 32px;
+        }
+
+        .event-date-block {
+            border: 1px solid var(--cream-border);
+            background: var(--white);
+            padding: 24px;
+            border-radius: 2px;
+            margin-bottom: 28px;
+        }
+
+        .event-day {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--brown);
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        .event-time-text {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* Countdown */
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 36px;
+        }
+
+        .cd-box {
+            background: var(--white);
+            border: 1px solid var(--cream-border);
+            border-radius: 2px;
+            padding: 16px 6px;
+        }
+
+        .cd-num {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: var(--brown);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .cd-num.flip { animation: numFlip 0.3s ease; }
+        @keyframes numFlip {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cd-lbl {
+            font-family: var(--font-body);
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+        }
+
+        /* Map */
+        .map-block {
+            background: var(--white);
+            border: 1px solid var(--cream-border);
+            border-radius: 2px;
+            padding: 20px;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .map-name {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--brown-deep);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .map-addr {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 260px;
+            border-radius: 2px;
+            overflow: hidden;
+            border: 1px solid var(--cream-border);
+            margin-bottom: 12px;
+        }
+
+        .map-frame iframe { width: 100%; height: 100%; border: 0; }
+
+        /* ── VERSE ── */
+        .verse-section {
+            background: var(--white);
+            padding: 48px 32px;
+            text-align: center;
+            border-top: 1px solid var(--cream-border);
+        }
+
+        .verse-section img {
+            width: 65%;
+            height: 241px;
+            object-fit: cover;
+            border-radius: 2px;
+            margin-bottom: 36px;
+            border: 1px solid var(--cream-border);
+            object-position: bottom;
+        }
+
+        .verse-cross {
+            font-size: 1rem;
+            color: var(--brown-light);
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+
+        .verse-open-quote {
+            font-family: var(--font-serif);
+            font-size: 5rem;
+            line-height: 0.6;
+            color: var(--brown-pale);
+            opacity: 0.4;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .verse-text {
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            line-height: 2;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .verse-ref {
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            color: var(--brown-mid);
+            letter-spacing: 2px;
+        }
+
+        /* ── GUESTBOOK ── */
+        .gb-section {
+            background: var(--cream-dark);
+            padding: 48px 28px;
+            text-align: center;
+            border-top: 1px solid var(--cream-border);
+        }
+
+        .gb-section img {
+            width: 65%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 2px;
+            margin-bottom: 24px;
+            border: 1px solid var(--cream-border);
+            object-position: 0 -6rem;
+            border-radius: 10px;
+        }
+
+        .gb-sub {
+            font-family: var(--font-serif);
+            font-size: 0.92rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        /* ── GALLERY ── */
+        .gallery-section {
+            background: var(--white);
+            padding: 48px 0;
+            border-top: 1px solid var(--cream-border);
+        }
+
+        .gallery-header {
+            text-align: center;
+            padding: 0 28px;
+            margin-bottom: 28px;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 10px;
+            animation: marqueeSlide 20s linear infinite;
+            width: max-content;
+        }
+
+        .marquee-track img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid var(--cream-border);
+            flex-shrink: 0;
+        }
+
+        @keyframes marqueeSlide {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--brown-deep);
+            padding: 56px 32px 44px;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px);
+            pointer-events: none;
+        }
+
+        .footer-inner {
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(212,180,154,0.12);
+            padding: 36px 24px;
+            border-radius: 2px;
+            margin-bottom: 32px;
+        }
+
+        .footer-ornament {
+            margin-bottom: 20px;
+        }
+
+        .footer-ornament svg { opacity: 0.3; }
+
+        .footer-text {
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            color: rgba(212,180,154,0.7);
+            line-height: 1.9;
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        .footer-from {
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            color: rgba(212,180,154,0.4);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .footer-name {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            color: var(--brown-pale);
+            letter-spacing: 0.5px;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-music {
+            font-family: var(--font-body);
+            font-size: 0.62rem;
+            color: rgba(212,180,154,0.3);
+            position: relative;
+            z-index: 1;
+            margin-top: 28px;
+            letter-spacing: 1px;
+        }
+
+        .footer-credit {
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-credit a {
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            color: rgba(212,180,154,0.25);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ── MUSIC BTN ── */
+        #music-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            background: var(--brown);
+            border-radius: 50%;
+            border: none;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            transition: all 0.25s ease;
+        }
+
+        #music-btn:hover { background: var(--brown-deep); transform: scale(1.05); }
+
+        /* ── MODAL ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10,4,2,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: flex-end;
+            backdrop-filter: blur(6px);
+        }
+
+        .modal-sheet {
+            background: var(--cream);
+            width: 100%;
+            max-width: 480px;
+            height: 88vh;
+            border-radius: 16px 16px 0 0;
+            padding: 36px 24px 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .modal-handle {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 32px; height: 3px;
+            background: var(--cream-border);
+            border-radius: 2px;
+        }
+
+        .modal-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--brown-deep);
+            text-align: center;
+            margin-bottom: 4px;
+            font-weight: 400;
+        }
+
+        .modal-subtitle {
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 28px;
+        }
+
+        .input-group { margin-bottom: 16px; }
+
+        .input-group label {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: var(--brown);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--cream-border);
+            border-radius: 2px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            background: var(--white);
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.25s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            border-color: var(--brown-light);
+        }
+
+        .input-group textarea { resize: vertical; min-height: 88px; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--brown);
+            color: var(--white);
+            border: none;
+            border-radius: 2px;
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.25s ease;
+        }
+
+        .btn-submit:hover { background: var(--brown-deep); }
+
+        .comments-section {
+            margin-top: 32px;
+            border-top: 1px solid var(--cream-border);
+            padding-top: 28px;
+        }
+
+        .comments-title {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--brown);
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+
+        .comments-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            padding-bottom: 8px;
+        }
+
+        .comments-scroll::-webkit-scrollbar { display: none; }
+
+        .comment-card {
+            flex: 0 0 85%;
+            scroll-snap-align: start;
+            background: var(--white);
+            padding: 18px;
+            border-radius: 2px;
+            border: 1px solid var(--cream-border);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--cream-border);
+        }
+
+        .comment-name {
+            font-family: var(--font-heading);
+            font-size: 0.92rem;
+            color: var(--brown);
+            font-weight: 400;
+        }
+
+        .badge {
+            font-family: var(--font-body);
+            font-size: 0.56rem;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 1px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hadir { background: var(--cream-dark); color: var(--brown); border: 1px solid var(--cream-border); }
+        .absen { background: #fdf0e0; color: #9a6030; border: 1px solid #e8d0b0; }
+
+        .comment-text {
+            font-family: var(--font-serif);
+            font-size: 0.88rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .comments-hint {
+            text-align: center;
+            font-size: 0.62rem;
+            color: var(--text-light);
+            margin-top: 10px;
+            opacity: 0.6;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 480px) {
+            .container { max-width: 100%; }
+            .cover-name { font-size: 4.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bg-audio" loop><source src="music.mp3" type="audio/mpeg"></audio>
+
+<div class="container">
+
+    <!-- COVER -->
+    <section id="cover">
+        <div class="cover-corner cc-tl"></div>
+        <div class="cover-corner cc-tr"></div>
+        <div class="cover-corner cc-bl"></div>
+        <div class="cover-corner cc-br"></div>
+
+        <div class="cover-cross">✝</div>
+        <p class="cover-label">Undangan Syukuran Baptisan</p>
+
+        <div class="cover-img-wrap">
+            <div class="cover-img-ring">
+                <img src="1.jpeg" alt="Kenzo">
+            </div>
+        </div>
+
+        <div class="cover-dots">
+            <span></span><i></i><span></span>
+        </div>
+
+        <h1 class="cover-name">Kenzo</h1>
+        <p class="cover-fullname">Kenzo Maynart Tuhumury</p>
+        <p class="cover-date">Minggu, 3 Mei 2026 &nbsp;·&nbsp; 14.00 WIT</p>
+
+        <div class="cover-thin-line"></div>
+
+        <button class="btn-open" id="btn-open">Buka Undangan</button>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <section id="main-content">
+
+        <!-- Hero -->
+        <div class="hero fade-up">
+            <div class="hero-corner hc-tl"></div>
+            <div class="hero-corner hc-tr"></div>
+            <div class="hero-corner hc-bl"></div>
+            <div class="hero-corner hc-br"></div>
+
+            <p class="hero-cross">✝</p>
+            <p class="hero-label">Syukuran Baptisan</p>
+            <h1 class="hero-name">Kenzo</h1>
+            <p class="hero-fullname">Kenzo Maynart Tuhumury</p>
+
+            <div class="hero-photo">
+                <img src="1.jpeg" alt="Kenzo">
+                <div class="hero-photo-corner hpc-tl"></div>
+                <div class="hero-photo-corner hpc-tr"></div>
+                <div class="hero-photo-corner hpc-bl"></div>
+                <div class="hero-photo-corner hpc-br"></div>
+            </div>
+
+            <p class="hero-quote">"Berbahagialah setiap jiwa yang diperkenankan menerima anugerah baptisan kudus"</p>
+        </div>
+
+        <!-- Greeting -->
+        <div class="greeting fade-up">
+            <div class="greeting-inner">
+                <p class="greeting-cross">✝</p>
+                <h2 class="greeting-title">Shalom</h2>
+                <p class="greeting-text">"Merupakan suatu kebahagiaan bagi kami atas kehadiran Bapak/Ibu dalam Syukuran Baptisan Anak Kami"</p>
+                <p class="greeting-name">Kenzo Maynart Tuhumury</p>
+            </div>
+        </div>
+
+        <!-- Photo Card -->
+        <div class="photo-card fade-up">
+            <img src="2.jpeg" alt="Kenzo">
+            <p class="photo-card-label">Baptisan Baru</p>
+            <p class="photo-card-name">Kenzo Maynart Tuhumury</p>
+            <!-- <a href="https://instagram.com" target="_blank" class="btn-outline">Instagram ↗</a> -->
+        </div>
+
+        <!-- Event -->
+        <div class="event-section fade-up">
+            <p class="section-tag">Waktu &amp; Tempat</p>
+            <h2 class="section-heading">Detail Acara</h2>
+            <p class="section-sub">Mari hadir dan berbagi sukacita bersama kami</p>
+
+            <div class="event-date-block">
+                <p class="event-day">Minggu, 3 Mei 2026</p>
+                <p class="event-time-text">Pukul 14.00 WIT — Selesai</p>
+            </div>
+
+            <div class="countdown-grid">
+                <div class="cd-box">
+                    <span class="cd-num" id="days">00</span>
+                    <span class="cd-lbl">Hari</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-num" id="hours">00</span>
+                    <span class="cd-lbl">Jam</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-num" id="minutes">00</span>
+                    <span class="cd-lbl">Menit</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-num" id="seconds">00</span>
+                    <span class="cd-lbl">Detik</span>
+                </div>
+            </div>
+
+            <div class="map-block" style="text-align:left;">
+                <p class="map-name">Kel. D.J Leiwakabessy</p>
+                <p class="map-addr">Jalan Rijali No 72<br>(Samping Puskesmas Belakang Soya)</p>
+            </div>
+
+            <div class="map-frame">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3981.523877004973!2d128.190185546875!3d-3.69513201713562!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d6ce9aed6bba40f%3A0xddc8c532f34da799!2sJean%20Salon!5e0!3m2!1sid!2sid!4v1777482237447!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <a href="https://www.google.com/maps/search/Jean%20Salon/@-3.69513201713562,128.190185546875,17z?hl=id" target="_blank" class="btn-outline" style="width:100%; display:block; text-align:center;">📍 Buka Google Maps</a>
+        </div>
+
+        <!-- Verse -->
+        <div class="verse-section fade-up">
+            <img src="3.jpeg" alt="Kenzo">
+            <p class="verse-cross">✝</p>
+            <span class="verse-open-quote">"</span>
+            <p class="verse-text">
+                Kamu telah menerima Kristus Yesus, Tuhan kita. Karena itu hendaklah hidupmu tetap di dalam Dia. Hendaklah kamu berakar di dalam Dia dan dibangun di atas Dia, hendaklah kamu bertambah teguh dalam iman yang telah diajarkan kepadamu, dan hendaklah hatimu melimpah dengan syukur.
+            </p>
+            <p class="verse-ref">— Kolose 2 : 6–7 —</p>
+        </div>
+
+        <!-- Guest Book -->
+        <div class="gb-section fade-up">
+            <p class="section-tag">Guest Book</p>
+            <h2 class="section-heading" style="margin-bottom:8px;">Kirim Ucapan</h2>
+            <img src="5.jpeg" alt="Guestbook">
+            <p class="gb-sub">Kirim doa dan ucapan anda serta konfirmasi kehadiran</p>
+            <button class="btn-solid" id="btn-gb-open">✉ &nbsp;Konfirmasi &amp; Kirim Ucapan</button>
+        </div>
+
+        <!-- Gallery -->
+        <div class="gallery-section fade-up">
+            <div class="gallery-header">
+                <p class="section-tag">Gallery</p>
+                <h2 class="section-heading">Momen Bersama</h2>
+            </div>
+            <div style="overflow:hidden;">
+                <div class="marquee-track">
+                    <img src="1.jpeg" alt=""><img src="2.jpeg" alt="">
+                    <img src="3.jpeg" alt=""><img src="4.jpeg" alt="">
+                    <img src="5.jpeg" alt=""><img src="1.jpeg" alt=""><img src="2.jpeg" alt="">
+                    <img src="3.jpeg" alt=""><img src="4.jpeg" alt="">
+                    <img src="5.jpeg" alt="">
+                    <img src="1.jpeg" alt=""><img src="2.jpeg" alt="">
+                    <img src="3.jpeg" alt=""><img src="4.jpeg" alt="">
+                    <img src="5.jpeg" alt=""><img src="1.jpeg" alt=""><img src="2.jpeg" alt="">
+                    <img src="3.jpeg" alt=""><img src="4.jpeg" alt="">
+                    <img src="5.jpeg" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer fade-up">
+            <div class="footer-inner">
+                <div class="footer-ornament">
+                    <svg width="100" height="20" viewBox="0 0 100 20" fill="none">
+                        <line x1="0" y1="10" x2="38" y2="10" stroke="#d4b49a" stroke-width="1"/>
+                        <rect x="45" y="6" width="8" height="8" stroke="#d4b49a" stroke-width="1" transform="rotate(45 49 10)" fill="none"/>
+                        <line x1="60" y1="10" x2="100" y2="10" stroke="#d4b49a" stroke-width="1"/>
+                    </svg>
+                </div>
+                <p class="footer-text">"Merupakan suatu kebahagiaan bagi kami atas kehadiran<br>Bapak/Ibu dalam Syukuran Baptisan Anak Kami"</p>
+                <p class="footer-from">Hormat Kami Yang Mengundang</p>
+                <p class="footer-name">Keluarga Kenzo Maynart Tuhumury</p>
+            </div>
+            <p class="footer-music">♪ &nbsp;For This Child - Baby Dedication Song - Ken Blount</p>
+            <div class="footer-credit">
+                <a href="https://www.instagram.com/invite.you.id/" target="_blank">Invite You Invitation</a>
+            </div>
+        </footer>
+
+    </section>
+</div>
+
+<!-- MODAL GUESTBOOK -->
+<div class="modal-overlay" id="gb-modal">
+    <div class="modal-sheet">
+        <div class="modal-handle"></div>
+        <h2 class="modal-title">Ucapan &amp; Doa</h2>
+        <p class="modal-subtitle">untuk Kenzo Maynart Tuhumury</p>
+
+        <form id="rsvp-form">
+            <div class="input-group">
+                <label>Nama</label>
+                <input type="text" id="in-nama" placeholder="Nama Anda" required>
+            </div>
+            <div class="input-group">
+                <label>Kehadiran</label>
+                <select id="in-hadir">
+                    <option value="Hadir">✓ &nbsp;Hadir</option>
+                    <option value="Tidak Hadir">✗ &nbsp;Tidak Hadir</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Ucapan &amp; Doa</label>
+                <textarea id="in-ucapan" placeholder="Tuliskan ucapan dan doa Anda..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Kirim Ucapan</button>
+        </form>
+
+        <div class="comments-section">
+            <p class="comments-title">Ucapan Tamu</p>
+            <div class="comments-scroll" id="comment-list">
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <span class="comment-name">Tamu</span>
+                        <span class="badge hadir">Hadir</span>
+                    </div>
+                    <p class="comment-text">"Diberkati sll menjadi anak yg setia dan setia sll memikul salib kristus"</p>
+                </div>
+            </div>
+            <p class="comments-hint">← geser untuk lihat ucapan lainnya →</p>
+        </div>
+    </div>
+</div>
+
+<!-- Music Button -->
+<button id="music-btn">
+    <svg id="music-svg" viewBox="0 0 24 24" width="20" fill="white">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+    </svg>
+</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById('bg-audio');
+    const musicBtn = document.getElementById('music-btn');
+    const musicSvg = document.getElementById('music-svg');
+    let isPlaying = false;
+
+    // COUNTDOWN
+    const prevValues = {};
+    function startCountdown() {
+        const target = new Date("May 3, 2026 14:00:00").getTime();
+        const update = () => {
+            const dist = target - Date.now();
+            const vals = {
+                days: Math.max(0, Math.floor(dist / 86400000)),
+                hours: Math.max(0, Math.floor((dist % 86400000) / 3600000)),
+                minutes: Math.max(0, Math.floor((dist % 3600000) / 60000)),
+                seconds: Math.max(0, Math.floor((dist % 60000) / 1000)),
+            };
+            Object.entries(vals).forEach(([key, val]) => {
+                const el = document.getElementById(key);
+                const f = val < 10 ? "0" + val : String(val);
+                if (el && prevValues[key] !== f) {
+                    el.classList.remove('flip');
+                    void el.offsetWidth;
+                    el.classList.add('flip');
+                    el.textContent = f;
+                    prevValues[key] = f;
+                }
+            });
+            if (dist > 0) requestAnimationFrame(update);
+            else setTimeout(update, 1000);
+        };
+        update();
+    }
+    startCountdown();
+
+    // OPEN
+    document.getElementById('btn-open').addEventListener('click', () => {
+        const cover = document.getElementById('cover');
+        cover.style.transform = 'translateX(-50%) translateY(-100vh)';
+        cover.style.opacity = '0';
+        setTimeout(() => {
+            cover.style.display = 'none';
+            const main = document.getElementById('main-content');
+            main.style.display = 'block';
+            musicBtn.style.display = 'flex';
+            audio.play().then(() => { isPlaying = true; }).catch(() => {});
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.08 });
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        }, 900);
+    });
+
+    // MODAL
+    const modal = document.getElementById('gb-modal');
+    document.getElementById('btn-gb-open').addEventListener('click', () => {
+        modal.style.display = 'flex';
+    });
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+    });
+
+    // FORM
+    document.getElementById('rsvp-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nama = document.getElementById('in-nama').value.trim();
+        const hadir = document.getElementById('in-hadir').value;
+        const ucapan = document.getElementById('in-ucapan').value.trim();
+        if (!nama || !ucapan) return;
+
+        const isHadir = !hadir.includes('Tidak');
+        const card = document.createElement('div');
+        card.className = 'comment-card';
+        card.style.opacity = '0';
+        card.style.transform = 'translateX(-16px)';
+        card.innerHTML = `
+            <div class="comment-header">
+                <span class="comment-name">${esc(nama)}</span>
+                <span class="badge ${isHadir ? 'hadir' : 'absen'}">${isHadir ? 'Hadir' : 'Tidak Hadir'}</span>
+            </div>
+            <p class="comment-text">"${esc(ucapan)}"</p>
+        `;
+
+        const list = document.getElementById('comment-list');
+        list.insertBefore(card, list.firstChild);
+        requestAnimationFrame(() => {
+            card.style.transition = 'all 0.4s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateX(0)';
+        });
+
+        document.getElementById('rsvp-form').reset();
+        const btn = e.target.querySelector('button');
+        btn.textContent = '✓ Terkirim!';
+        btn.style.background = '#5a8a5a';
+        setTimeout(() => { btn.textContent = 'Kirim Ucapan'; btn.style.background = ''; }, 2500);
+    });
+
+    function esc(s) {
+        return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // MUSIC
+    musicBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            audio.pause();
+            musicSvg.innerHTML = '<path d="M8 5v14l11-7z"/>';
+        } else {
+            audio.play();
+            musicSvg.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+        }
+        isPlaying = !isPlaying;
+    });
+
+    document.getElementById('cover').style.transition = 'transform 1.2s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.7s ease';
+});
+</script>
+</body>
+</html>
