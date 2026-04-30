@@ -32,7 +32,6 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
@@ -46,7 +45,6 @@
         ::-webkit-scrollbar-track { background: var(--cream-dark); }
         ::-webkit-scrollbar-thumb { background: var(--brown-light); border-radius: 2px; }
 
-        /* ── CONTAINER ── */
         .container {
             max-width: 480px;
             margin: 0 auto;
@@ -57,7 +55,6 @@
             box-shadow: 0 0 60px rgba(0,0,0,0.6);
         }
 
-        /* ── FADE UP ── */
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
@@ -66,7 +63,7 @@
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
         /* ════════════════════════════════
-           COVER
+           COVER — compact, fits any phone
         ════════════════════════════════ */
         #cover {
             position: fixed;
@@ -76,15 +73,16 @@
             z-index: 9999;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             text-align: center;
-            padding: 48px 36px;
+            /* Compact padding — kecil di atas/bawah agar tombol selalu tampil */
+            padding: 20px 36px 28px;
             background: var(--brown-deep);
             transition: transform 1.2s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.6s ease;
+            overflow: hidden;
         }
 
-        /* Subtle texture lines on cover */
         #cover::before {
             content: '';
             position: absolute;
@@ -95,53 +93,63 @@
             pointer-events: none;
         }
 
-        /* Corner ornaments */
         .cover-corner {
             position: absolute;
-            width: 48px; height: 48px;
+            width: 40px; height: 40px;
             border-color: var(--brown-light);
             border-style: solid;
             opacity: 0.5;
         }
-        .cc-tl { top: 24px; left: 24px; border-width: 1px 0 0 1px; }
-        .cc-tr { top: 24px; right: 24px; border-width: 1px 1px 0 0; }
-        .cc-bl { bottom: 24px; left: 24px; border-width: 0 0 1px 1px; }
-        .cc-br { bottom: 24px; right: 24px; border-width: 0 1px 1px 0; }
+        .cc-tl { top: 16px; left: 16px; border-width: 1px 0 0 1px; }
+        .cc-tr { top: 16px; right: 16px; border-width: 1px 1px 0 0; }
+        .cc-bl { bottom: 16px; left: 16px; border-width: 0 0 1px 1px; }
+        .cc-br { bottom: 16px; right: 16px; border-width: 0 1px 1px 0; }
 
-        .cover-cross {
-            font-size: 1.4rem;
-            color: var(--brown-pale);
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+        /* Bagian atas cover */
+        .cover-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
             position: relative;
             z-index: 1;
+            flex-shrink: 0;
+        }
+
+        .cover-cross {
+            font-size: 1.1rem;
+            color: var(--brown-pale);
+            letter-spacing: 2px;
+            margin-bottom: 6px;
         }
 
         .cover-label {
             font-family: var(--font-body);
-            font-size: 0.8rem;
+            font-size: 0.68rem;
             font-weight: 500;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--brown-pale);
             opacity: 0.7;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 28px;
         }
 
+        /* Foto — ukuran responsif via clamp agar muat di layar kecil */
         .cover-img-wrap {
             position: relative;
             z-index: 1;
-            margin-bottom: 32px;
+            flex-shrink: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 0;
         }
 
         .cover-img-ring {
-            width: 240px;
-            height: 240px;
+            width: clamp(140px, 36vw, 200px);
+            height: clamp(140px, 36vw, 200px);
             border: 2px solid var(--brown-light);
             border-radius: 50%;
-            padding: 6px;
+            padding: 5px;
             display: inline-block;
             opacity: 0.9;
         }
@@ -155,51 +163,15 @@
             object-position: bottom;
         }
 
-        .cover-thin-line {
-            width: 1px;
-            height: 40px;
-            background: var(--brown-light);
-            opacity: 0.35;
-            margin: 0 auto 20px;
+        /* Teks nama + tanggal */
+        .cover-middle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
             position: relative;
             z-index: 1;
-        }
-
-        .cover-name {
-            font-family: var(--font-script);
-            font-size: 5rem;
-            color: var(--white);
-            line-height: 1;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 20px;
-            animation: fadeIn 1.4s ease-out both;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .cover-fullname {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            color: var(--brown-pale);
-            letter-spacing: 2px;
-            font-weight: 300;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 6px;
-        }
-
-        .cover-date {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            color: rgba(212,180,154,0.6);
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 40px;
+            flex-shrink: 0;
         }
 
         .cover-dots {
@@ -207,21 +179,65 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 36px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 8px;
         }
-
-        .cover-dots span { width: 40px; height: 1px; background: var(--brown-light); opacity: 0.3; }
+        .cover-dots span { width: 32px; height: 1px; background: var(--brown-light); opacity: 0.3; }
         .cover-dots i { width: 4px; height: 4px; border: 1px solid var(--brown-pale); transform: rotate(45deg); opacity: 0.6; }
 
-        .btn-open {
+        .cover-name {
+            font-family: var(--font-script);
+            font-size: clamp(3.2rem, 11vw, 4.8rem);
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 6px;
+            animation: fadeIn 1.4s ease-out both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .cover-fullname {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            color: var(--brown-pale);
+            letter-spacing: 2px;
+            font-weight: 300;
+            margin-bottom: 4px;
+        }
+
+        .cover-date {
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            color: rgba(212,180,154,0.6);
+            letter-spacing: 1px;
+        }
+
+        /* Tombol — selalu di bawah, tidak tergeser */
+        .cover-bottom {
             position: relative;
             z-index: 1;
+            flex-shrink: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cover-thin-line {
+            width: 1px;
+            height: 28px;
+            background: var(--brown-light);
+            opacity: 0.35;
+        }
+
+        .btn-open {
             background: transparent;
             color: var(--cream);
             border: 1px solid var(--brown-light);
-            padding: 14px 40px;
+            padding: 13px 40px;
             border-radius: 2px;
             font-family: var(--font-body);
             font-size: 0.68rem;
@@ -230,6 +246,8 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 100%;
+            max-width: 260px;
         }
 
         .btn-open:hover {
@@ -239,11 +257,10 @@
         }
 
         /* ════════════════════════════════
-           MAIN
+           MAIN CONTENT
         ════════════════════════════════ */
         #main-content { display: none; position: relative; }
 
-        /* ── HERO ── */
         .hero {
             background: var(--brown-deep);
             padding: 64px 32px 56px;
@@ -251,7 +268,6 @@
             position: relative;
         }
 
-        /* Subtle grid lines */
         .hero::before {
             content: '';
             position: absolute;
@@ -305,8 +321,7 @@
             margin-bottom: 4px;
         }
 
-        .hero-fullname
-        {
+        .hero-fullname {
             font-family: var(--font-serif);
             font-size: 1rem;
             color: var(--brown-pale);
@@ -358,13 +373,11 @@
             margin: 0 auto;
         }
 
-        /* ── SECTION DIVIDER ── */
         .divider {
             display: flex;
             align-items: center;
             gap: 16px;
             padding: 0 28px;
-            margin: 0;
         }
 
         .divider-line { flex: 1; height: 1px; background: var(--cream-border); }
@@ -375,12 +388,8 @@
             flex-shrink: 0;
         }
 
-        /* ── CONTENT SPACING ── */
-        .section-pad {
-            padding: 40px 28px;
-        }
+        .section-pad { padding: 40px 28px; }
 
-        /* ── GREETING ── */
         .greeting {
             background: var(--brown-deep);
             padding: 48px 32px;
@@ -392,8 +401,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px);
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px);
             pointer-events: none;
         }
 
@@ -438,7 +446,6 @@
             font-weight: 400;
         }
 
-        /* ── PHOTO CARD ── */
         .photo-card {
             background: var(--white);
             margin: 0;
@@ -517,7 +524,6 @@
 
         .btn-solid:hover { background: var(--brown-deep); border-color: var(--brown-deep); }
 
-        /* ── EVENT ── */
         .event-section {
             background: var(--cream-dark);
             padding: 48px 28px;
@@ -575,7 +581,6 @@
             margin-top: 10px;
         }
 
-        /* Countdown */
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -603,7 +608,7 @@
         .cd-num.flip { animation: numFlip 0.3s ease; }
         @keyframes numFlip {
             from { opacity: 0; transform: translateY(-6px); }
-            to { opacity: 1; transform: translateY(0); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         .cd-lbl {
@@ -614,7 +619,6 @@
             color: var(--text-light);
         }
 
-        /* Map */
         .map-block {
             background: var(--white);
             border: 1px solid var(--cream-border);
@@ -652,7 +656,6 @@
 
         .map-frame iframe { width: 100%; height: 100%; border: 0; }
 
-        /* ── VERSE ── */
         .verse-section {
             background: var(--white);
             padding: 48px 32px;
@@ -703,7 +706,6 @@
             letter-spacing: 2px;
         }
 
-        /* ── GUESTBOOK ── */
         .gb-section {
             background: var(--cream-dark);
             padding: 48px 28px;
@@ -715,11 +717,10 @@
             width: 65%;
             height: 200px;
             object-fit: cover;
-            border-radius: 2px;
+            border-radius: 10px;
             margin-bottom: 24px;
             border: 1px solid var(--cream-border);
             object-position: 0 -6rem;
-            border-radius: 10px;
         }
 
         .gb-sub {
@@ -731,7 +732,6 @@
             margin-bottom: 24px;
         }
 
-        /* ── GALLERY ── */
         .gallery-section {
             background: var(--white);
             padding: 48px 0;
@@ -762,10 +762,9 @@
 
         @keyframes marqueeSlide {
             from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+            to   { transform: translateX(-50%); }
         }
 
-        /* ── FOOTER ── */
         .footer {
             background: var(--brown-deep);
             padding: 56px 32px 44px;
@@ -777,8 +776,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px);
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px);
             pointer-events: none;
         }
 
@@ -791,10 +789,7 @@
             margin-bottom: 32px;
         }
 
-        .footer-ornament {
-            margin-bottom: 20px;
-        }
-
+        .footer-ornament { margin-bottom: 20px; }
         .footer-ornament svg { opacity: 0.3; }
 
         .footer-text {
@@ -850,7 +845,6 @@
             text-transform: uppercase;
         }
 
-        /* ── MUSIC BTN ── */
         #music-btn {
             position: fixed;
             bottom: 24px;
@@ -871,7 +865,9 @@
 
         #music-btn:hover { background: var(--brown-deep); transform: scale(1.05); }
 
-        /* ── MODAL ── */
+        /* ════════════════════════════════
+           MODAL — dengan tombol close
+        ════════════════════════════════ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -889,29 +885,75 @@
             max-width: 480px;
             height: 88vh;
             border-radius: 16px 16px 0 0;
-            padding: 36px 24px 20px;
+            padding: 20px 24px 20px;
             overflow-y: auto;
             overflow-x: hidden;
             position: relative;
         }
 
+        /* Header modal dengan tombol close */
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            padding-bottom: 0;
+            position: sticky;
+            top: 0;
+            background: var(--cream);
+            padding-top: 16px;
+            z-index: 10;
+        }
+
         .modal-handle {
             position: absolute;
-            top: 12px;
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 32px; height: 3px;
+            width: 36px; height: 4px;
             background: var(--cream-border);
             border-radius: 2px;
         }
 
         .modal-title {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--brown-deep);
-            text-align: center;
-            margin-bottom: 4px;
             font-weight: 400;
+            flex: 1;
+            text-align: center;
+            padding-left: 40px; /* offset for close button */
+        }
+
+        /* Tombol Close — bulat, elegan */
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--cream-border);
+            background: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            color: var(--text-light);
+        }
+
+        .modal-close:hover {
+            background: var(--cream-dark);
+            border-color: var(--brown-pale);
+            color: var(--brown);
+        }
+
+        .modal-close svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            fill: none;
         }
 
         .modal-subtitle {
@@ -920,7 +962,7 @@
             color: var(--text-light);
             text-align: center;
             font-style: italic;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .input-group { margin-bottom: 16px; }
@@ -953,9 +995,7 @@
 
         .input-group input:focus,
         .input-group select:focus,
-        .input-group textarea:focus {
-            border-color: var(--brown-light);
-        }
+        .input-group textarea:focus { border-color: var(--brown-light); }
 
         .input-group textarea { resize: vertical; min-height: 88px; }
 
@@ -1059,7 +1099,6 @@
 
         @media (max-width: 480px) {
             .container { max-width: 100%; }
-            .cover-name { font-size: 4.2rem; }
         }
     </style>
 </head>
@@ -1076,32 +1115,39 @@
         <div class="cover-corner cc-bl"></div>
         <div class="cover-corner cc-br"></div>
 
-        <div class="cover-cross">✝</div>
-        <p class="cover-label">Undangan Syukuran Baptisan</p>
+        <!-- Bagian Atas -->
+        <div class="cover-top">
+            <p class="cover-cross">✝</p>
+            <p class="cover-label">Undangan Syukuran Baptisan</p>
+        </div>
 
+        <!-- Foto Tengah -->
         <div class="cover-img-wrap">
             <div class="cover-img-ring">
                 <img src="1.jpeg" alt="Kenzo">
             </div>
         </div>
 
-        <div class="cover-dots">
-            <span></span><i></i><span></span>
+        <!-- Nama + Tanggal -->
+        <div class="cover-middle">
+            <div class="cover-dots">
+                <span></span><i></i><span></span>
+            </div>
+            <h1 class="cover-name">Kenzo</h1>
+            <p class="cover-fullname">Kenzo Maynart Tuhumury</p>
+            <p class="cover-date">Minggu, 3 Mei 2026 &nbsp;·&nbsp; 14.00 WIT</p>
         </div>
 
-        <h1 class="cover-name">Kenzo</h1>
-        <p class="cover-fullname">Kenzo Maynart Tuhumury</p>
-        <p class="cover-date">Minggu, 3 Mei 2026 &nbsp;·&nbsp; 14.00 WIT</p>
-
-        <div class="cover-thin-line"></div>
-
-        <button class="btn-open" id="btn-open">Buka Undangan</button>
+        <!-- Tombol — selalu terlihat di bawah -->
+        <div class="cover-bottom">
+            <div class="cover-thin-line"></div>
+            <button class="btn-open" id="btn-open">Buka Undangan</button>
+        </div>
     </section>
 
     <!-- MAIN CONTENT -->
     <section id="main-content">
 
-        <!-- Hero -->
         <div class="hero fade-up">
             <div class="hero-corner hc-tl"></div>
             <div class="hero-corner hc-tr"></div>
@@ -1124,7 +1170,6 @@
             <p class="hero-quote">"Berbahagialah setiap jiwa yang diperkenankan menerima anugerah baptisan kudus"</p>
         </div>
 
-        <!-- Greeting -->
         <div class="greeting fade-up">
             <div class="greeting-inner">
                 <p class="greeting-cross">✝</p>
@@ -1134,15 +1179,12 @@
             </div>
         </div>
 
-        <!-- Photo Card -->
         <div class="photo-card fade-up">
             <img src="2.jpeg" alt="Kenzo">
             <p class="photo-card-label">Baptisan Baru</p>
             <p class="photo-card-name">Kenzo Maynart Tuhumury</p>
-            <!-- <a href="https://instagram.com" target="_blank" class="btn-outline">Instagram ↗</a> -->
         </div>
 
-        <!-- Event -->
         <div class="event-section fade-up">
             <p class="section-tag">Waktu &amp; Tempat</p>
             <h2 class="section-heading">Detail Acara</h2>
@@ -1154,37 +1196,24 @@
             </div>
 
             <div class="countdown-grid">
-                <div class="cd-box">
-                    <span class="cd-num" id="days">00</span>
-                    <span class="cd-lbl">Hari</span>
-                </div>
-                <div class="cd-box">
-                    <span class="cd-num" id="hours">00</span>
-                    <span class="cd-lbl">Jam</span>
-                </div>
-                <div class="cd-box">
-                    <span class="cd-num" id="minutes">00</span>
-                    <span class="cd-lbl">Menit</span>
-                </div>
-                <div class="cd-box">
-                    <span class="cd-num" id="seconds">00</span>
-                    <span class="cd-lbl">Detik</span>
-                </div>
+                <div class="cd-box"><span class="cd-num" id="days">00</span><span class="cd-lbl">Hari</span></div>
+                <div class="cd-box"><span class="cd-num" id="hours">00</span><span class="cd-lbl">Jam</span></div>
+                <div class="cd-box"><span class="cd-num" id="minutes">00</span><span class="cd-lbl">Menit</span></div>
+                <div class="cd-box"><span class="cd-num" id="seconds">00</span><span class="cd-lbl">Detik</span></div>
             </div>
 
-            <div class="map-block" style="text-align:left;">
+            <div class="map-block">
                 <p class="map-name">Kel. D.J Leiwakabessy</p>
                 <p class="map-addr">Jalan Rijali No 72<br>(Samping Puskesmas Belakang Soya)</p>
             </div>
 
             <div class="map-frame">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3981.523877004973!2d128.190185546875!3d-3.69513201713562!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d6ce9aed6bba40f%3A0xddc8c532f34da799!2sJean%20Salon!5e0!3m2!1sid!2sid!4v1777482237447!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3981.523877004973!2d128.190185546875!3d-3.69513201713562!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d6ce9aed6bba40f%3A0xddc8c532f34da799!2sJean%20Salon!5e0!3m2!1sid!2sid!4v1777482237447!5m2!1sid!2sid" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
             <a href="https://www.google.com/maps/search/Jean%20Salon/@-3.69513201713562,128.190185546875,17z?hl=id" target="_blank" class="btn-outline" style="width:100%; display:block; text-align:center;">📍 Buka Google Maps</a>
         </div>
 
-        <!-- Verse -->
         <div class="verse-section fade-up">
             <img src="3.jpeg" alt="Kenzo">
             <p class="verse-cross">✝</p>
@@ -1195,7 +1224,6 @@
             <p class="verse-ref">— Kolose 2 : 6–7 —</p>
         </div>
 
-        <!-- Guest Book -->
         <div class="gb-section fade-up">
             <p class="section-tag">Guest Book</p>
             <h2 class="section-heading" style="margin-bottom:8px;">Kirim Ucapan</h2>
@@ -1204,7 +1232,6 @@
             <button class="btn-solid" id="btn-gb-open">✉ &nbsp;Konfirmasi &amp; Kirim Ucapan</button>
         </div>
 
-        <!-- Gallery -->
         <div class="gallery-section fade-up">
             <div class="gallery-header">
                 <p class="section-tag">Gallery</p>
@@ -1226,7 +1253,6 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <footer class="footer fade-up">
             <div class="footer-inner">
                 <div class="footer-ornament">
@@ -1253,7 +1279,18 @@
 <div class="modal-overlay" id="gb-modal">
     <div class="modal-sheet">
         <div class="modal-handle"></div>
-        <h2 class="modal-title">Ucapan &amp; Doa</h2>
+
+        <!-- Header dengan tombol X -->
+        <div class="modal-header">
+            <h2 class="modal-title">Ucapan &amp; Doa</h2>
+            <button class="modal-close" id="btn-modal-close" aria-label="Tutup">
+                <svg viewBox="0 0 14 14">
+                    <line x1="1" y1="1" x2="13" y2="13"/>
+                    <line x1="13" y1="1" x2="1" y2="13"/>
+                </svg>
+            </button>
+        </div>
+
         <p class="modal-subtitle">untuk Kenzo Maynart Tuhumury</p>
 
         <form id="rsvp-form">
@@ -1305,15 +1342,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const musicSvg = document.getElementById('music-svg');
     let isPlaying = false;
 
-    // COUNTDOWN
     const prevValues = {};
     function startCountdown() {
         const target = new Date("May 3, 2026 14:00:00").getTime();
         const update = () => {
             const dist = target - Date.now();
             const vals = {
-                days: Math.max(0, Math.floor(dist / 86400000)),
-                hours: Math.max(0, Math.floor((dist % 86400000) / 3600000)),
+                days:    Math.max(0, Math.floor(dist / 86400000)),
+                hours:   Math.max(0, Math.floor((dist % 86400000) / 3600000)),
                 minutes: Math.max(0, Math.floor((dist % 3600000) / 60000)),
                 seconds: Math.max(0, Math.floor((dist % 60000) / 1000)),
             };
@@ -1335,7 +1371,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     startCountdown();
 
-    // OPEN
     document.getElementById('btn-open').addEventListener('click', () => {
         const cover = document.getElementById('cover');
         cover.style.transform = 'translateX(-50%) translateY(-100vh)';
@@ -1354,20 +1389,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 900);
     });
 
-    // MODAL
     const modal = document.getElementById('gb-modal');
-    document.getElementById('btn-gb-open').addEventListener('click', () => {
-        modal.style.display = 'flex';
-    });
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) modal.style.display = 'none';
-    });
 
-    // FORM
+    function openModal() { modal.style.display = 'flex'; }
+    function closeModal() { modal.style.display = 'none'; }
+
+    document.getElementById('btn-gb-open').addEventListener('click', openModal);
+    document.getElementById('btn-modal-close').addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
     document.getElementById('rsvp-form').addEventListener('submit', (e) => {
         e.preventDefault();
-        const nama = document.getElementById('in-nama').value.trim();
-        const hadir = document.getElementById('in-hadir').value;
+        const nama   = document.getElementById('in-nama').value.trim();
+        const hadir  = document.getElementById('in-hadir').value;
         const ucapan = document.getElementById('in-ucapan').value.trim();
         if (!nama || !ucapan) return;
 
@@ -1403,7 +1437,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
-    // MUSIC
     musicBtn.addEventListener('click', () => {
         if (isPlaying) {
             audio.pause();
