@@ -67,21 +67,24 @@
         ════════════════════════════════ */
         #cover {
             position: fixed;
-            top: 0; left: 50%; transform: translateX(-50%);
-            width: 100%; max-width: 480px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
             height: 100vh;
             height: 100dvh;
             z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            grid-template-rows: 4rem 16rem 10rem 4rem;
+            justify-items: center;
             text-align: center;
-            padding: 40px 36px;
-            gap: 10px;
+            padding: 16px 36px 20px;
             background: var(--brown-deep);
             transition: transform 1.2s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.6s ease;
             overflow: hidden;
+            align-items: center;
+            align-content: center;
         }
 
         #cover::before {
@@ -152,7 +155,7 @@
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            object-position: top;
+            object-position: bottom;
         }
 
         .cover-middle {
